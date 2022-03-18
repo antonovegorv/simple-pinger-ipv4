@@ -65,6 +65,7 @@ func (p *Pinger) Ping() {
 
 	if p.stats.DestIP == nil {
 		p.errorsChan <- fmt.Errorf("no ipv4 for that host %v;", p.config.Hostname)
+		return
 	}
 
 	for i := 0; ; i++ {
