@@ -58,7 +58,6 @@ Loop:
 			if err != nil {
 				fmt.Println(err)
 			}
-			cancel()
 			break Loop
 		default:
 			time.Sleep(100 * time.Millisecond)
