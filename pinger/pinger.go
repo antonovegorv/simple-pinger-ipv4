@@ -81,7 +81,7 @@ func (p *Pinger) Ping() {
 				Type: ipv4.ICMPTypeEcho, Code: 0,
 				Body: &icmp.Echo{
 					ID: os.Getpid() & 0xffff, Seq: i + 1,
-					Data: []byte(strings.Repeat("0", p.config.Size)),
+					Data: []byte(strings.Repeat("0", p.config.PacketSize)),
 				},
 			}
 
@@ -125,7 +125,7 @@ func (p *Pinger) Ping() {
 
 			switch rm.Type {
 			case ipv4.ICMPTypeEchoReply:
-				aPacket := packet.New(p.config.Size, peer, i+1, cm.TTL, elapsed)
+				aPacket := packet.New(p.config.PacketSize, peer, i+1, cm.TTL, elapsed)
 				p.stats.ReceivedPackets = append(p.stats.ReceivedPackets, aPacket)
 				aPacket.Log()
 			default:

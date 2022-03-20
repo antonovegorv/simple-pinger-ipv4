@@ -21,7 +21,7 @@ func main() {
 	interval := flag.Int("i", 1, "wait interval seconds between sending each packet")
 	count := flag.Int("c", 0, "stop after sending count packets")
 	ttl := flag.Int("t", 64, "set the IP Time to Live")
-	size := flag.Int("s", 64, "size of packet in bytes")
+	packetSize := flag.Int("s", 64, "size of packet in bytes")
 	flag.Parse()
 
 	var hostname string
@@ -43,7 +43,7 @@ func main() {
 		*interval,
 		*count,
 		*ttl,
-		*size,
+		*packetSize,
 	))
 	go p.Ping()
 
