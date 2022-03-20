@@ -98,6 +98,12 @@ func (p *Pinger) Ping() {
 				return
 			}
 
+			err = c.SetReadDeadline(time.Now().Add(time.Duration(p.config.Timeout) * time.Second))
+			if err != nil {
+				p.errorsChan <- err
+				return
+			}
+
 			p.stats.PacketsTransmitted++
 
 			rb := make([]byte, 1500)

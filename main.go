@@ -17,6 +17,7 @@ import (
 const numberOfPingers = 1
 
 func main() {
+	timeout := flag.Int("t", 4, "max timeout for a reply in seconds")
 	interval := flag.Int("i", 1, "wait interval seconds between sending each packet")
 	count := flag.Int("c", 0, "stop after sending count packets")
 	ttl := flag.Int("t", 64, "set the IP Time to Live")
@@ -38,6 +39,7 @@ func main() {
 
 	p := pinger.New(ctx, wg, errorsChan, config.New(
 		hostname,
+		*timeout,
 		*interval,
 		*count,
 		*ttl,
